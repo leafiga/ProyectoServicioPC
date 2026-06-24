@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Reparacion de PC</title>
+    {% extends 'base.html' %}
+    <title> {% block title %}Home - Reparacion de PC{% endblock %}</title>
+    {% block content %}
 </head>
     <h1>Bienvenido a Reparación de PC</h1>
     <p>{{mensaje}}</p>
+    {% endblock %}
 
 <body>
     
