@@ -1,17 +1,6 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% extends 'base.html' %}
-    <title> {% block title %}Home - Reparacion de PC{% endblock %}</title>
-    {% block content %}
-</head>
-    <h1>Bienvenido a Reparación de PC</h1>
+{% extends 'base.html' %}
+{% block title %}Home - Reparación de PC{% endblock %}
+{% block content %}
+    <h1 class = "animate__animated animate__bounce">Bienvenido a Reparación de PC</h1>
     <p>{{mensaje}}</p>
-    {% endblock %}
-
-<body>
-    
-</body>
-</html>
+{% endblock %}
