@@ -1,41 +1,45 @@
+
 {% extends 'base.html' %}
 
 {% block title %}Gestión de Reparaciones{% endblock %}
 
 {% block content %}
 
-<div class="container mt-4">
+<div class="reparaciones-page">
 
-    <h1>Gestión de Reparaciones</h1>
+    <h1 class="reparaciones-title">Gestión de Reparaciones</h1>
 
-    <p>
-        Aquí puedes gestionar la información de tus reparaciones, incluyendo agregar nuevas reparaciones, editar detalles existentes y eliminar reparaciones que ya no sean necesarias.
+    <p class="reparaciones-intro">
+        Aquí puedes consultar la información de las reparaciones registradas,
+        incluyendo su técnico, diagnóstico, fecha de entrega, estado y solución.
     </p>
 
-    <div class="card shadow-sm border-0">
+    <div class="card reparaciones-card">
 
-        <div class="card-header bg-info-subtle">
-            <h5 class="mb-0 text-primary">
+        <div class="card-header reparaciones-card-header">
+            <h5 class="reparaciones-card-title">
                 <i class="bi bi-tools"></i>
                 Reparaciones registradas
             </h5>
         </div>
 
-        <div class="card-body p-0">
+        <div class="card-body reparaciones-card-body">
 
-            <div class="table-responsive">
+            <div class="reparaciones-table-wrapper">
 
-                <table class="table table-hover table-striped align-middle mb-0">
+                <table class="table table-hover table-striped reparaciones-table">
 
                     <thead class="table-primary">
+
                         <tr>
                             <th>Técnico</th>
                             <th>Diagnóstico</th>
                             <th>Entrega</th>
                             <th>Estado</th>
                             <th>Soluciones</th>
-                            <th class="text-center">Acciones</th>
+                            <th>Acciones</th>
                         </tr>
+
                     </thead>
 
                     <tbody>
@@ -44,22 +48,18 @@
 
                         <tr>
 
-                            <!-- Técnico -->
                             <td>
                                 {{ reparacion.tecnico }}
                             </td>
 
-                            <!-- Diagnóstico -->
                             <td>
-                                {{ reparacion.diagnostico|default:"Sin diagnostico" }}
+                                {{ reparacion.diagnostico|default:"Sin diagnóstico" }}
                             </td>
 
-                            <!-- Fecha entrega -->
                             <td>
                                 {{ reparacion.fecha_entrega|date:"d/m/Y" }}
                             </td>
 
-                            <!-- Estado -->
                             <td>
 
                                 {% if reparacion.estado == "ESPERA" %}
@@ -100,13 +100,11 @@
 
                             </td>
 
-                            <!-- Solución -->
-                            <td class="text-muted">
+                            <td>
                                 {{ reparacion.solucion|default:"Sin solución" }}
                             </td>
 
-                            <!-- Acciones -->
-                            <td class="text-center">
+                            <td class="reparaciones-actions">
 
                                 <a href="#NADAAUN"
                                    class="btn btn-sm btn-outline-warning"
@@ -127,13 +125,15 @@
                         {% empty %}
 
                         <tr>
-                            <td colspan="6" class="text-center text-muted py-4">
+
+                            <td colspan="6" class="reparaciones-empty">
 
                                 <i class="bi bi-info-circle"></i>
 
                                 No hay reparaciones registradas.
 
                             </td>
+
                         </tr>
 
                         {% endfor %}
@@ -151,3 +151,4 @@
 </div>
 
 {% endblock %}
+```

@@ -2,21 +2,48 @@
 {% load widget_tweaks %}
 {% block title %}Editar Cliente{% endblock %}
 {% block content %}
-    <div class="container mt-4">
-    <h2 class="text-center mb-4">Editar Cliente: {{ cliente.apellido }} {{ cliente.nombre }}</h2>
 
+<div class="editar-cliente-page">
 
-    <div class="card shadow-sm p-4 mx-auto" style="max-width: 600px;">
-        <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
+    <header class="editar-cliente-header">
+        <h1 class="editar-cliente-title animate__animated animate__fadeInDown">
+            Editar Cliente
+        </h1>
 
+        <p class="editar-cliente-intro">
+            Modificá los datos de {{ cliente.apellido }} {{ cliente.nombre }}.
+        </p>
+    </header>
 
-        <div class="text-center mt-4">
-            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-            <a href="{% url 'myapp:clientes' %}" class="btn btn-secondary ms-2">Cancelar</a>
+    <section class="editar-cliente-section">
+
+        <div class="card editar-cliente-card">
+            <div class="card-body editar-cliente-card-body">
+
+                <form method="POST">
+                    {% csrf_token %}
+
+                    <div class="editar-cliente-fields">
+                        {{ form.as_p }}
+                    </div>
+
+                    <div class="editar-cliente-actions">
+                        <a href="{% url 'myapp:clientes' %}" class="btn btn-secondary">
+                            <i class="bi bi-arrow-left"></i> Cancelar
+                        </a>
+
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-check-circle"></i> Guardar cambios
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
         </div>
-        </form>
-    </div>
-    </div>
+
+    </section>
+
+</div>
+
 {% endblock %}

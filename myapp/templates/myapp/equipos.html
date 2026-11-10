@@ -1,35 +1,68 @@
+
 {% extends 'base.html' %}
+
 {% block title %}Gestión de Equipos{% endblock %}
+
 {% block content %}
-    <div class="container mt-4">
-    <h1 class="animate__animated animate__lightSpeedInLeft">Gestión de Equipos</h1>
-    <p>Aquí puedes gestionar la información de tus equipos, incluyendo agregar nuevos equipos, editar detalles existentes y eliminar equipos que ya no sean necesarios.</p>
-    <div class="row">
+
+<div class="equipos-page">
+
+    <h1 class="equipos-title animate__animated animate__lightSpeedInLeft">
+        Gestión de Equipos
+    </h1>
+
+    <p class="equipos-intro">
+        Aquí puedes consultar la información de los equipos registrados,
+        incluyendo sus características y observaciones.
+    </p>
+
+    <div class="equipos-grid">
+
         {% for equipo in equipos %}
-        <div class="col-md-4 col-sm-6 mb-4">
-            <div class="card shadow-sm h-100 bg-info-subtle text-info-emphasis">
+
+        <div class="equipos-card-wrapper" data-aos="fade-down">
+
+            <div class="card equipos-card">
+
                 <div class="card-body">
-                    <h5 class="card-title text-primary">
+
+                    <h5 class="card-title equipos-card-title">
                         {{ equipo.cliente }} - {{ equipo.tipo }}
                     </h5>
-                    <p class="card-text mb-1">
+
+                    <p class="card-text equipos-data">
                         <strong>Marca:</strong> {{ equipo.marca }}
                     </p>
-                    <p class="card-text  mb-1">
+
+                    <p class="card-text equipos-data">
                         <strong>Modelo:</strong> {{ equipo.modelo }}
                     </p>
-                    <p class="card-text  mb-1">
+
+                    <p class="card-text equipos-data">
                         <strong>Serial:</strong> {{ equipo.numero_serie }}
                     </p>
-                    <p class="card-text">
-                        <strong>Observaciones: </strong> {{ equipo.observaciones }}
+
+                    <p class="card-text equipos-data">
+                        <strong>Observaciones:</strong> {{ equipo.observaciones }}
                     </p>
+
                 </div>
+
             </div>
+
         </div>
+
         {% empty %}
-        <p class="text-muted text-center">No hay equipos registrados.</p>
+
+        <p class="equipos-empty">
+            No hay equipos registrados.
+        </p>
+
         {% endfor %}
+
     </div>
-    </div>
+
+</div>
+
 {% endblock %}
+```

@@ -1,12 +1,47 @@
 {% extends 'base.html' %}
 {% block title %}Registro{% endblock %}
 {% block content %}
-<div class="container mt-5 col-md-4">
-    <h3 class="text-center mb-3">Crear una cuenta</h3>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn btn-success w-100">Registrarse</button>
-    </form>
+
+<div class="registro-page">
+
+    <header class="registro-header">
+        <h1 class="registro-title animate__animated animate__fadeInDown">
+            Crear una cuenta
+        </h1>
+
+        <p class="registro-intro">
+            Registrate para acceder a los servicios de Servicio PC.
+        </p>
+    </header>
+
+    <section class="registro-section">
+
+        <div class="card registro-card">
+            <div class="card-body registro-card-body">
+
+                <form method="post">
+                    {% csrf_token %}
+
+                    <div class="registro-fields">
+                        {{ form.as_p }}
+                    </div>
+
+                    <button type="submit" class="btn btn-success registro-submit">
+                        <i class="bi bi-person-plus-fill"></i>
+                        Registrarse
+                    </button>
+                </form>
+
+                <p class="registro-login">
+                    ¿Ya tenés una cuenta?
+                    <a href="{% url 'accounts:login' %}">Iniciá sesión</a>
+                </p>
+
+            </div>
+        </div>
+
+    </section>
+
 </div>
+
 {% endblock %}
