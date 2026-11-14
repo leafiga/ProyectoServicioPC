@@ -13,6 +13,7 @@ urlpatterns = [
     path('cliente/editar/<int:id>/', views.editar_cliente, name='editar_cliente'),
     path('cliente/eliminar/<int:id>/', views.eliminar_cliente, name='eliminar_cliente'),
     path('contactos/', views.contactos, name='contactos'),
+    path('chatbot/', views.chatbot, name='chatbot'),
 
 
 ]

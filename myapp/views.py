@@ -85,5 +85,8 @@ def contactos(request):
     tecnicos = Tecnico.objects.all()
     return render(request,"myapp/contactos.html", {'tecnicos': tecnicos})
 
+def chatbot(request):
+    return render(request, "myapp/chatbot.html")
+
 
 
