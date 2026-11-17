@@ -66,9 +66,11 @@ class Reparacion(models.Model):
 
     equipo = models.ForeignKey(
         Equipo,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
         related_name='reparaciones'
-    )
+)
 
 
     tecnico = models.ForeignKey(

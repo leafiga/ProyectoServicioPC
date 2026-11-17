@@ -30,7 +30,6 @@
                 <table class="table table-hover table-striped reparaciones-table">
 
                     <thead class="table-primary">
-
                         <tr>
                             <th>Técnico</th>
                             <th>Diagnóstico</th>
@@ -39,7 +38,6 @@
                             <th>Soluciones</th>
                             <th>Acciones</th>
                         </tr>
-
                     </thead>
 
                     <tbody>
@@ -106,17 +104,25 @@
 
                             <td class="reparaciones-actions">
 
-                                <a href="#NADAAUN"
+                                <a href="{% url 'myapp:editar_reparacion' reparacion.id %}"
                                    class="btn btn-sm btn-outline-warning"
                                    title="Editar reparación">
                                     <i class="bi bi-pencil"></i>
                                 </a>
 
-                                <a href="#NADAAUN"
-                                   class="btn btn-sm btn-outline-danger"
-                                   title="Eliminar reparación">
-                                    <i class="bi bi-trash"></i>
-                                </a>
+                                <form action="{% url 'myapp:eliminar_reparacion' reparacion.id %}"
+                                      method="POST"
+                                      onsubmit="return confirm('¿Seguro que deseas eliminar esta reparación?')">
+
+                                    {% csrf_token %}
+
+                                    <button type="submit"
+                                            class="btn btn-sm btn-outline-danger"
+                                            title="Eliminar reparación">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+
+                                </form>
 
                             </td>
 
@@ -127,11 +133,8 @@
                         <tr>
 
                             <td colspan="6" class="reparaciones-empty">
-
                                 <i class="bi bi-info-circle"></i>
-
                                 No hay reparaciones registradas.
-
                             </td>
 
                         </tr>
@@ -151,4 +154,3 @@
 </div>
 
 {% endblock %}
-```

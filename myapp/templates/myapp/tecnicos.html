@@ -40,13 +40,13 @@
 
                 <div class="card-footer tecnicos-card-footer">
 
-                    <a href="#NADAAUN"
-                       class="btn btn-warning btn-sm tecnicos-edit-button"
-                       title="Editar técnico">
+                   <a href="{% url 'myapp:editar_tecnico' tecnico.id %}"
+                        class="btn btn-warning btn-sm tecnicos-edit-button"
+                        title="Editar técnico">
                         <i class="bi bi-pencil-square"></i>
                     </a>
 
-                    <form action="#NADAAUN"
+                    <form action="{% url 'myapp:eliminar_tecnico' tecnico.id %}"
                           method="POST"
                           class="tecnicos-delete-form"
                           onsubmit="return confirm('¿Seguro que deseas eliminar a {{ tecnico.nombre }} {{ tecnico.apellido }}?')">

@@ -46,6 +46,26 @@
                         <strong>Observaciones:</strong> {{ equipo.observaciones }}
                     </p>
 
+                    <div class="editar-cliente-actions">
+
+                        <a href="{% url 'myapp:editar_equipo' equipo.id %}" class="btn btn-primary">
+                            <i class="bi bi-pencil-square"></i> Editar
+                        </a>
+
+                        <form action="{% url 'myapp:eliminar_equipo' equipo.id %}"
+                              method="POST"
+                              onsubmit="return confirm('¿Seguro que deseas eliminar este equipo?')">
+
+                            {% csrf_token %}
+
+                            <button type="submit" class="btn btn-danger">
+                                <i class="bi bi-trash"></i> Eliminar
+                            </button>
+
+                        </form>
+
+                    </div>
+
                 </div>
 
             </div>
@@ -65,4 +85,3 @@
 </div>
 
 {% endblock %}
-```

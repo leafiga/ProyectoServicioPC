@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Cliente, Reparacion, Equipo, Tecnico
-from .forms import ClientesFormulario, ClientesFilter
+from .forms import ClientesFormulario, ClientesFilter, TecnicoForm, EquipoForm, ReparacionForm
 from django.db import models
 from django.contrib.auth.decorators import login_required #nuevo
 
@@ -35,6 +35,33 @@ def equipos(request):
     return render(request, "myapp/equipos.html", {"equipos": equipos})
 
 @login_required
+def editar_equipo(request, id):
+    equipo = get_object_or_404(Equipo, id=id)
+
+    if request.method == 'POST':
+        form = EquipoForm(request.POST, instance=equipo)
+        if form.is_valid():
+            form.save()
+            return redirect('myapp:equipos')
+    else:
+        form = EquipoForm(instance=equipo)
+
+    return render(request, 'myapp/editar_equipo.html', {
+        'form': form,
+        'equipo': equipo
+    })
+
+@login_required
+def eliminar_equipo(request, id):
+    equipo = get_object_or_404(Equipo, id=id)
+
+    if request.method == 'POST':
+        equipo.delete()
+        return redirect('myapp:equipos')
+
+    return redirect('myapp:equipos')
+
+@login_required
 def tecnicos(request):
     tecnicos = Tecnico.objects.all()
     return render(request, "myapp/tecnicos.html", {"tecnicos": tecnicos})
@@ -43,6 +70,33 @@ def tecnicos(request):
 def reparacion(request):
     reparacion = Reparacion.objects.all()
     return render(request, "myapp/reparacion.html", {"reparacion": reparacion})
+
+@login_required
+def editar_reparacion(request, id):
+    reparacion = get_object_or_404(Reparacion, id=id)
+
+    if request.method == 'POST':
+        form = ReparacionForm(request.POST, instance=reparacion)
+        if form.is_valid():
+            form.save()
+            return redirect('myapp:reparacion')
+    else:
+        form = ReparacionForm(instance=reparacion)
+
+    return render(request, 'myapp/editar_reparacion.html', {
+        'form': form,
+        'reparacion': reparacion
+    })
+
+@login_required
+def eliminar_reparacion(request, id):
+    reparacion = get_object_or_404(Reparacion, id=id)
+
+    if request.method == 'POST':
+        reparacion.delete()
+        return redirect('myapp:reparacion')
+
+    return redirect('myapp:reparacion')
 
 def agregar_cliente(request):
     if request.method == 'POST':
@@ -72,6 +126,33 @@ def editar_cliente(request, id):
         form = ClientesFilter(instance=cliente)
    
     return render(request, 'myapp/editar_clientes.html', {'form': form, 'cliente': cliente})
+
+@login_required
+def editar_tecnico(request, id):
+    tecnico = get_object_or_404(Tecnico, id=id)
+
+    if request.method == 'POST':
+        form = TecnicoForm(request.POST, instance=tecnico)
+        if form.is_valid():
+            form.save()
+            return redirect('myapp:tecnicos')
+    else:
+        form = TecnicoForm(instance=tecnico)
+
+    return render(request, 'myapp/editar_tecnico.html', {
+        'form': form,
+        'tecnico': tecnico
+    })
+
+@login_required
+def eliminar_tecnico(request, id):
+    tecnico = get_object_or_404(Tecnico, id=id)
+
+    if request.method == 'POST':
+        tecnico.delete()
+        return redirect('myapp:tecnicos')
+
+    return redirect('myapp:tecnicos')
 
 def eliminar_cliente(request, id):
     cliente = get_object_or_404(Cliente, id=id)

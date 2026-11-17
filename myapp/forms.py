@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Cliente
+from .models import Cliente, Tecnico, Equipo, Reparacion
 
 
 class ClientesFormulario(forms.Form):
@@ -23,3 +23,43 @@ class ClientesFilter(forms.ModelForm):
         model = Cliente
 
         fields = ['nombre', 'apellido', 'telefono', 'email']
+
+
+
+class TecnicoForm(forms.ModelForm):
+
+    class Meta:
+        model = Tecnico
+        fields = ['nombre', 'apellido', 'telefono', 'especialidad']
+
+
+
+
+class EquipoForm(forms.ModelForm):
+    class Meta:
+        model = Equipo
+        fields = [
+            'cliente',
+            'tipo',
+            'marca',
+            'modelo',
+            'numero_serie',
+            'observaciones'
+        ]
+
+class ReparacionForm(forms.ModelForm):
+    class Meta:
+        model = Reparacion
+        fields = [
+            'equipo',
+            'tecnico',
+            'fecha_ingreso',
+            'fecha_entrega',
+            'problema_reportado',
+            'diagnostico',
+            'solucion',
+            'costo',
+            'estado'
+        ]
+
+        

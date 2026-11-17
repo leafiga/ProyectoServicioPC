@@ -1,0 +1,52 @@
+
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Editar Reparación{% endblock %}
+
+{% block content %}
+
+<div class="editar-cliente-page">
+
+    <header class="editar-cliente-header">
+        <h1 class="editar-cliente-title animate__animated animate__fadeInDown">
+            Editar Reparación
+        </h1>
+
+        <p class="editar-cliente-intro">
+            Modificá los datos de la reparación #{{ reparacion.id }}.
+        </p>
+    </header>
+
+    <section class="editar-cliente-section">
+
+        <div class="card editar-cliente-card">
+            <div class="card-body editar-cliente-card-body">
+
+                <form method="POST">
+                    {% csrf_token %}
+
+                    <div class="editar-cliente-fields">
+                        {{ form.as_p }}
+                    </div>
+
+                    <div class="editar-cliente-actions">
+                        <a href="{% url 'myapp:reparacion' %}" class="btn btn-secondary">
+                            <i class="bi bi-arrow-left"></i> Cancelar
+                        </a>
+
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-check-circle"></i> Guardar cambios
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+    </section>
+
+</div>
+
+{% endblock %}
