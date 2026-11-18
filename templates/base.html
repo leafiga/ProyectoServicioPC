@@ -100,6 +100,14 @@
 
                     <ul class="navbar-nav site-nav-auth">
 
+                    <li class="nav-item">
+                    <button type="button" id="theme-toggle"
+                        class="nav-link site-nav-link site-nav-button">
+                        <i class="bi bi-moon-stars-fill"></i>
+                    Modo oscuro
+                    </button>
+                    </li>
+
                         {% if user.is_authenticated %}
 
                         <li class="nav-item">
@@ -150,8 +158,22 @@
 
 
     <main class="site-main">
+
+        {% if messages %}
+    <div class="container mt-3">
+        {% for message in messages %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="bi bi-check-circle-fill me-2"></i>
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
         {% block content %}
         {% endblock %}
+        
     </main>
 
 
@@ -166,12 +188,35 @@
     <!-- AOS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
-    <script>
-        AOS.init();
-    </script>
+   <script>
+    AOS.init();
+
+    const themeToggle = document.getElementById('theme-toggle');
+
+    // Recuperar el tema guardado
+    const savedTheme = localStorage.getItem('theme');
+
+    // Si no hay una preferencia guardada, iniciar en oscuro
+    if (savedTheme === null || savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+    }
+
+    // Cambiar el tema al hacer clic
+    themeToggle.addEventListener('click', function () {
+        document.body.classList.toggle('dark-mode');
+
+        // Guardar la preferencia elegida
+        if (document.body.classList.contains('dark-mode')) {
+            localStorage.setItem('theme', 'dark');
+        } else {
+            localStorage.setItem('theme', 'light');
+        }
+    });
+</script>
+    
 
     {% block extra_js %}{% endblock %}
 
 </body>
 </html>
-```
+

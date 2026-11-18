@@ -3,6 +3,7 @@ from .models import Cliente, Reparacion, Equipo, Tecnico
 from .forms import ClientesFormulario, ClientesFilter, TecnicoForm, EquipoForm, ReparacionForm
 from django.db import models
 from django.contrib.auth.decorators import login_required #nuevo
+from django.contrib import messages
 
 
 # Create your views here.
@@ -34,6 +35,23 @@ def equipos(request):
     equipos = Equipo.objects.all()
     return render(request, "myapp/equipos.html", {"equipos": equipos})
 
+
+@login_required
+def agregar_equipo(request):
+    if request.method == 'POST':
+        form = EquipoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Equipo agregado correctamente.')
+            return redirect('myapp:equipos')
+    else:
+        form = EquipoForm()
+
+    return render(request, 'myapp/agregar_equipo.html', {
+        'form': form
+    })
+
+
 @login_required
 def editar_equipo(request, id):
     equipo = get_object_or_404(Equipo, id=id)
@@ -42,6 +60,7 @@ def editar_equipo(request, id):
         form = EquipoForm(request.POST, instance=equipo)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Equipo actualizado correctamente.')
             return redirect('myapp:equipos')
     else:
         form = EquipoForm(instance=equipo)
@@ -57,6 +76,7 @@ def eliminar_equipo(request, id):
 
     if request.method == 'POST':
         equipo.delete()
+        messages.success(request, 'Equipo eliminado correctamente.')
         return redirect('myapp:equipos')
 
     return redirect('myapp:equipos')
@@ -71,6 +91,23 @@ def reparacion(request):
     reparacion = Reparacion.objects.all()
     return render(request, "myapp/reparacion.html", {"reparacion": reparacion})
 
+
+@login_required
+def agregar_reparacion(request):
+    if request.method == 'POST':
+        form = ReparacionForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Reparación agregada correctamente.')
+            return redirect('myapp:reparacion')
+    else:
+        form = ReparacionForm()
+
+    return render(request, 'myapp/agregar_reparacion.html', {
+        'form': form
+    })
+
+
 @login_required
 def editar_reparacion(request, id):
     reparacion = get_object_or_404(Reparacion, id=id)
@@ -79,6 +116,7 @@ def editar_reparacion(request, id):
         form = ReparacionForm(request.POST, instance=reparacion)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Reparación actualizada correctamente.')
             return redirect('myapp:reparacion')
     else:
         form = ReparacionForm(instance=reparacion)
@@ -94,6 +132,7 @@ def eliminar_reparacion(request, id):
 
     if request.method == 'POST':
         reparacion.delete()
+        messages.success(request, 'Reparación eliminada correctamente.')
         return redirect('myapp:reparacion')
 
     return redirect('myapp:reparacion')
@@ -109,6 +148,7 @@ def agregar_cliente(request):
             direccion = form.cleaned_data['direccion']
             cliente = Cliente(nombre=nombre, apellido=apellido, telefono=telefono, email=email, direccion=direccion)
             cliente.save()
+            messages.success(request, 'Cliente agregado correctamente.')
             return redirect('myapp:clientes')
     else:
         form = ClientesFormulario()
@@ -121,11 +161,27 @@ def editar_cliente(request, id):
         form = ClientesFilter(request.POST, instance=cliente)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Cliente actualizado correctamente.')
             return redirect('myapp:clientes')
     else:
         form = ClientesFilter(instance=cliente)
    
     return render(request, 'myapp/editar_clientes.html', {'form': form, 'cliente': cliente})
+
+@login_required
+def agregar_tecnico(request):
+    if request.method == 'POST':
+        form = TecnicoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Técnico agregado correctamente.')
+            return redirect('myapp:tecnicos')
+    else:
+        form = TecnicoForm()
+
+    return render(request, 'myapp/agregar_tecnico.html', {
+        'form': form
+    })
 
 @login_required
 def editar_tecnico(request, id):
@@ -135,6 +191,7 @@ def editar_tecnico(request, id):
         form = TecnicoForm(request.POST, instance=tecnico)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Técnico actualizado correctamente.')
             return redirect('myapp:tecnicos')
     else:
         form = TecnicoForm(instance=tecnico)
@@ -150,6 +207,7 @@ def eliminar_tecnico(request, id):
 
     if request.method == 'POST':
         tecnico.delete()
+        messages.success(request, 'Técnico eliminado correctamente.')
         return redirect('myapp:tecnicos')
 
     return redirect('myapp:tecnicos')
@@ -159,6 +217,7 @@ def eliminar_cliente(request, id):
 
     if request.method == 'POST':
         cliente.delete()
+        messages.success(request, 'Cliente eliminado correctamente.')
         return redirect('myapp:clientes')
     return render(request, 'myapp/clientes.html', {'cliente': cliente})
 

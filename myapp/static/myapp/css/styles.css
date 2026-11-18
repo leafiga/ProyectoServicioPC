@@ -329,10 +329,16 @@ body {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
+body.dark-mode .tecnicos-card {
+    background-color: #1C2732;
+    color: #E5E7EB;
+}
+
 .tecnicos-card-title {
     color: #0d6efd;
     margin-bottom: 18px;
 }
+
 
 .tecnicos-data {
     margin-bottom: 8px;
@@ -416,10 +422,16 @@ body {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
+body.dark-mode .equipos-card {
+    background-color: #1C2732;
+    color: #E5E7EB;
+}
+
 .equipos-card-title {
     color: #0d6efd;
     margin-bottom: 18px;
 }
+
 
 .equipos-data {
     margin-bottom: 8px;
@@ -1388,7 +1400,7 @@ body {
 }
 
 .inicio-bienvenida p {
-    color: #6c757d;
+    color: #d1d1dc;
     font-size: 1.25rem;
     margin-top: 18px;
     line-height: 1.6;
@@ -1497,3 +1509,66 @@ body {
         margin-bottom: 0;
     }
 }
+
+/* =========================
+   MODO OSCURO
+   ========================= */
+
+body.dark-mode {
+    background-color: #12181F;
+    color: #E5E7EB;
+}
+
+body.dark-mode .site-main {
+    color: #e5e5eb;
+}
+
+body.dark-mode .inicio-card {
+    background-color: #1C2732;
+    color: #E5E7EB;
+}
+
+body.dark-mode .inicio-card .card-title,
+body.dark-mode .inicio-card .card-text {
+    color: #e5e5eb;
+}
+
+/* Tarjetas de clientes en modo oscuro */
+body.dark-mode .clientes-card {
+    background-color: #252536;
+    color: #e5e5eb;
+}
+
+/* Título y descripción de Clientes en modo oscuro */
+body.dark-mode .clientes-page .clientes-title {
+    color: #B8BBCB;
+}
+
+body.dark-mode .clientes-intro {
+    color: #B8BBCB;
+}
+
+/* Tabla de reparaciones en modo oscuro */
+body.dark-mode .reparaciones-table {
+    --bs-table-color: #E5E7EB;
+    --bs-table-bg: #1C2732;
+    --bs-table-border-color: #354453;
+    --bs-table-striped-bg: #24313D;
+    --bs-table-striped-color: #E5E7EB;
+    --bs-table-hover-bg: #2B3B49;
+    --bs-table-hover-color: #FFFFFF;
+}
+
+/* Encabezado de la tabla */
+body.dark-mode .reparaciones-table thead.table-primary {
+    --bs-table-color: #E5E7EB;
+    --bs-table-bg: #1C2732;
+    --bs-table-border-color: #354453;
+}
+
+/* Formularios de clientes en modo oscuro */
+body.dark-mode .agregar-cliente-card,
+body.dark-mode .editar-cliente-card {
+    background-color: #C9DCE7;
+}
+

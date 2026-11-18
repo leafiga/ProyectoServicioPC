@@ -16,6 +16,12 @@
         incluyendo sus características y observaciones.
     </p>
 
+    <div class="tecnicos-add-container text-end mb-3">
+    <a href="{% url 'myapp:agregar_equipo' %}" class="btn btn-primary">
+        <i class="bi bi-plus-circle"></i> Agregar Equipo
+    </a>
+</div>
+
     <div class="equipos-grid">
 
         {% for equipo in equipos %}

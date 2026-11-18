@@ -24,7 +24,7 @@ def registro(request):
 
 @login_required
 def perfil(request):
-    perfil = request.user.perfil
+    perfil, _ = Perfil.objects.get_or_create(user=request.user)
     if request.method == 'POST':
         form = PerfilForm(request.POST, request.FILES, instance=perfil)
         if form.is_valid():
